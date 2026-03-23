@@ -68,16 +68,27 @@ def discover_categories(config) -> list[Category]:
     return config.categories
 
 
-def discover_categories_from_html(html: str, category_texts: set[str]) -> list[Category]:
+def discover_categories_from_html(
+    html: str,
+    category_texts: set[str] | None = None,
+    path_prefix: str | None = None,
+) -> list[Category]:
     soup = BeautifulSoup(html, "html.parser")
     categories: list[Category] = []
     seen: set[str] = set()
     for anchor in soup.select('a[href*="/c/"]'):
         text = _clean_text(anchor.get_text(" ", strip=True))
         href = anchor.get("href", "")
-        if not text or text not in category_texts or href in seen:
+        if not text or href in seen:
             continue
         if not href.startswith("/en/") or "/c/" not in href:
+            continue
+        if path_prefix is not None:
+            if not href.startswith(path_prefix):
+                continue
+            if "/filtar/" in href or "?" in href:
+                continue
+        elif category_texts is not None and text not in category_texts:
             continue
         seen.add(href)
         categories.append(Category(path=href, name=text))

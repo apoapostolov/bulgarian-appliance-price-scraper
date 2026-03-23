@@ -30,6 +30,21 @@ def _format_category_name(prefix: str | None, name: str) -> str:
     return f"{prefix} {lowered}"
 
 
+def _technopolis_category_prefix(hub_path: str) -> str:
+    cleaned = hub_path.split("?", 1)[0].rstrip("/")
+    if "/c/" not in cleaned:
+        return f"{cleaned}/"
+    return cleaned.rsplit("/c/", 1)[0] + "/"
+
+
+def _merge_categories(*category_groups: list[Category]) -> list[Category]:
+    merged: OrderedDict[str, Category] = OrderedDict()
+    for group in category_groups:
+        for category in group:
+            merged.setdefault(category.path, category)
+    return list(merged.values())
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Scrape Technomarket, Technopolis, and Zora appliances in stock.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG, help="Path to config.toml")
@@ -54,15 +69,24 @@ def discover_pages(config: ScraperConfig, category: Category) -> int:
 
 
 def discover_appliance_categories(config: ScraperConfig) -> list[Category]:
-    discovered: list[Category]
-    if config.profile.categories:
-        discovered = [
-            Category(
-                path=category.path,
-                name=_format_category_name(config.profile.category_name_prefix, category.name),
-            )
-            for category in config.profile.categories
-        ]
+    explicit_categories = list(config.profile.categories or config.categories)
+    discovered: list[Category] = []
+
+    if config.store == "technopolis" and config.profile.hub_path:
+        url = urljoin(config.base_url, config.profile.hub_path)
+        renderer = render_dom_chromium if config.store == "technopolis" else render_dom
+        html = renderer(
+            url,
+            config.render_timeout_ms,
+            config.chromium_binaries,
+            config.user_agent,
+        )
+        backend = STORE_BACKENDS[config.store]
+        discovered = backend.discover_categories_from_html(
+            html,
+            set(config.profile.category_texts) if config.profile.category_texts else None,
+            path_prefix=_technopolis_category_prefix(config.profile.hub_path),
+        )
     elif config.profile.category_texts:
         url = urljoin(config.base_url, config.profile.hub_path)
         renderer = render_dom_chromium if config.store == "technopolis" else render_dom
@@ -74,16 +98,8 @@ def discover_appliance_categories(config: ScraperConfig) -> list[Category]:
         )
         backend = STORE_BACKENDS[config.store]
         discovered = backend.discover_categories_from_html(html, set(config.profile.category_texts))
-    else:
-        discovered = [
-            Category(
-                path=category.path,
-                name=_format_category_name(config.profile.category_name_prefix, category.name),
-            )
-            for category in config.categories
-        ]
 
-    categories = list(discovered)
+    categories = _merge_categories(explicit_categories, discovered)
     if config.profile.hub_path and config.profile.category_root_name:
         root_category = Category(path=config.profile.hub_path, name=config.profile.category_root_name)
         if not any(category.path == root_category.path for category in categories):

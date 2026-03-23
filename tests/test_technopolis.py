@@ -106,10 +106,10 @@ DETAIL_HTML = f"""
 TECHNOPOLIS_HUB_HTML = """
 <html>
   <body>
-    <a href="javascript:void(0);">Washing machines</a>
-    <a href="/en/Domakinski-elektrouredi/Peralni/Peralni-s-predno-zarezhdane/c/P11100101">Front loading washing machines</a>
-    <a href="/en/Domakinski-elektrouredi/Peralni/Peralni-s-gorno-zarezhdane/c/P11100103">Top loading washing machines</a>
-    <a href="/en/Domakinski-elektrouredi/Peralni/Peralni-sas-Sushilni/c/P11100102">Washing machines & Dryers</a>
+    <a href="/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-dolen-frizer/c/P11100302">Refrigerator bottom freezer</a>
+    <a href="/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-goren-frizer/c/P11100306">Refrigerator upper freezer</a>
+    <a href="/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-edna-vrata/c/P11100301">One Door Refrigerators</a>
+    <a href="/en/Kompyutarni-aksesoari/Slushalki-i-mikrofoni/Slushalki/c/P11020501">Headphones</a>
   </body>
 </html>
 """
@@ -151,14 +151,10 @@ def test_extract_product_details_technopolis():
 def test_discover_categories_from_technopolis_hub():
     categories = discover_categories_from_html(
         TECHNOPOLIS_HUB_HTML,
-        {
-            "Front loading washing machines",
-            "Top loading washing machines",
-            "Washing machines & Dryers",
-        },
+        path_prefix="/en/Domakinski-elektrouredi/Hladilnici/",
     )
     assert [category.path for category in categories] == [
-        "/en/Domakinski-elektrouredi/Peralni/Peralni-s-predno-zarezhdane/c/P11100101",
-        "/en/Domakinski-elektrouredi/Peralni/Peralni-s-gorno-zarezhdane/c/P11100103",
-        "/en/Domakinski-elektrouredi/Peralni/Peralni-sas-Sushilni/c/P11100102",
+        "/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-dolen-frizer/c/P11100302",
+        "/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-goren-frizer/c/P11100306",
+        "/en/Domakinski-elektrouredi/Hladilnici/Hladilnici-s-edna-vrata/c/P11100301",
     ]
