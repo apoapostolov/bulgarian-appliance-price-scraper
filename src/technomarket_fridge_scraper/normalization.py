@@ -118,21 +118,25 @@ def parse_price_to_number(text: str | None) -> int | float | None:
     if not digits:
         return None
 
+    decimal_separator_seen = False
     if "," in digits and "." in digits:
         if digits.rfind(",") > digits.rfind("."):
             digits = digits.replace(".", "").replace(",", ".")
+            decimal_separator_seen = True
         else:
             digits = digits.replace(",", "")
     elif "," in digits:
         parts = digits.split(",")
         if len(parts[-1]) in {1, 2}:
             digits = "".join(parts[:-1]) + "." + parts[-1]
+            decimal_separator_seen = True
         else:
             digits = "".join(parts)
     elif "." in digits:
         parts = digits.split(".")
         if len(parts[-1]) in {1, 2}:
             digits = "".join(parts[:-1]) + "." + parts[-1]
+            decimal_separator_seen = True
         else:
             digits = "".join(parts)
 
@@ -140,6 +144,8 @@ def parse_price_to_number(text: str | None) -> int | float | None:
         value = float(digits)
     except ValueError:
         return None
+    if decimal_separator_seen:
+        return value
     return int(value) if value.is_integer() else value
 
 

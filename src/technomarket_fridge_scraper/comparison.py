@@ -219,7 +219,10 @@ def group_compared_products(rows: list[dict[str, object]]) -> list[ComparisonGro
     return groups
 
 
-def _format_bgn(value: int) -> str:
+def _format_bgn(value: int | float) -> str:
+    if isinstance(value, float):
+        left, right = f"{value:.2f}".split(".", 1)
+        return f"{int(left):,}".replace(",", " ") + "." + right + " BGN"
     return f"{value:,}".replace(",", " ") + " BGN"
 
 

@@ -65,3 +65,34 @@ def test_extract_products():
     assert row["old_price_eur"] is None
     assert row["in_stock"] is True
     assert row["specs"] == {}
+
+
+def test_parse_price_pair_preserves_bgn_cents():
+    html = """
+    <html>
+      <body>
+        <tm-product-item data-product="09219742">
+          <a class="title" href="/peralni/neo-wm-in70140-w-09219742">
+            <span class="brand">NEO</span>
+            <span class="name">WM-IN70140 W</span>
+          </a>
+          <div class="price">
+            <span><tm-price><span class="bgn_price">528.99 лв.</span><span class="euro_price">270.47 €</span></tm-price></span>
+          </div>
+          <button data-action="addCart"></button>
+        </tm-product-item>
+      </body>
+    </html>
+    """
+    rows = extract_products(
+        html=html,
+        base_url="https://www.technomarket.bg",
+        category_name="Перални с предно зареждане",
+        category_path="/produkti/peralni-predno-zarejdane",
+        page=1,
+        in_stock_only=True,
+    )
+    assert len(rows) == 1
+    row = rows[0].to_dict()
+    assert row["price_bgn"] == 528.99
+    assert row["price_eur"] == 270.47

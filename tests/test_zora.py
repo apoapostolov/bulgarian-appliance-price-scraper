@@ -103,6 +103,36 @@ def test_extract_products_zora():
     assert row["specs"]["power_w"] == 700
 
 
+def test_extract_products_zora_preserves_decimal_bgn():
+    html = """
+    <html>
+      <body>
+        <div class="_product-inner">
+          <div class="_product-name">
+            <h3>
+              <a href="https://zora.bg/product/cdmo-2065b">Микровълнова фурна Crown CDMO-2065B , 20 , 20 Литри, 700 W</a>
+            </h3>
+          </div>
+          <input data-product='{"id":166479,"name":"Микровълнова фурна Crown CDMO-2065B , 20 , 20 Литри, 700 W","price":"<span data-nosnippet class=\\\"bgn2eur-primary-currency\\\">71,<sup class=\\\"price-decimals\\\">58</sup> €</span><span data-nosnippet class=\\\"bgn2eur-secondary-currency\\\">140,<sup class=\\\"price-decimals\\\">00</sup> лв.</span>"}'/>
+          <a href="https://zora.bg/product/cdmo-2065b">Купи</a>
+        </div>
+      </body>
+    </html>
+    """
+    rows = extract_products(
+        html=html,
+        base_url="https://zora.bg",
+        category_name="Microwaves",
+        category_path="/category/mikrovalnovi-furni",
+        page=1,
+        in_stock_only=True,
+    )
+    assert len(rows) == 1
+    row = rows[0].to_dict()
+    assert row["price_bgn"] == 140.0
+    assert row["price_eur"] == 71.58
+
+
 def test_extract_product_details_zora():
     details = extract_product_details(DETAIL_HTML)
     assert details["ean"] == "1058000000000"

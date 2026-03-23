@@ -241,10 +241,7 @@ def _format_price(value: int | float | None) -> str:
         return "-"
     if isinstance(value, int):
         return f"{value:,}".replace(",", " ")
-    text = f"{value:.2f}".rstrip("0").rstrip(".")
-    if "." not in text:
-        return f"{int(text):,}".replace(",", " ")
-    left, right = text.split(".", 1)
+    left, right = f"{value:.2f}".split(".", 1)
     return f"{int(left):,}".replace(",", " ") + "." + right
 
 
