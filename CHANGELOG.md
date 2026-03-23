@@ -16,4 +16,5 @@
 - Added Technopolis and Zora backends alongside the Technomarket backend.
 - Added a cross-store Markdown comparison report that groups the same product
   across stores and highlights the lowest BGN offer.
+- Added an MCP server wrapper for agent workflows and documented how to run it.
 - Removed stale fridge-specific cache and output snapshots from the repository.

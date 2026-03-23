@@ -15,6 +15,7 @@ and exports the currently in-stock products to CSV and JSON.
 - Filters to items that have an active `Add to cart` button.
 - Writes timestamped output files under `output/`.
 - Generates a cross-store comparison markdown report when the full launcher runs.
+- Exposes a lightweight MCP server wrapper for agent consumers.
 
 ## Appliance Types
 
@@ -115,6 +116,52 @@ The skill tells agents how to:
 - Compare price, energy class, capacity, dimensions, and other specs
 - Turn the scraper output into buyer-guide recommendations
 - Keep budget thresholds explicit and cite the store and product IDs used
+
+## MCP Server
+
+The repository also includes a thin [Model Context Protocol](https://modelcontextprotocol.io/)
+server wrapper for agents that prefer structured tool calls over parsing files
+directly.
+
+Install the project dependencies first:
+
+```bash
+pip install -e .
+```
+
+Run the server:
+
+```bash
+technobulgarian-scraper-mcp
+```
+
+Or launch it with Python:
+
+```bash
+python -m technobulgarian_scraper.mcp_server
+```
+
+Example client configuration:
+
+```json
+{
+  "mcpServers": {
+    "technobulgarian-scraper": {
+      "command": "technobulgarian-scraper-mcp",
+      "cwd": "/path/to/technobulgarian-scraper"
+    }
+  }
+}
+```
+
+Available tools:
+
+- `list_latest_exports` - list the latest JSON export for each store and
+  appliance family
+- `search_products` - search the latest exports by SKU, EAN, model, or title
+- `build_comparison_report` - render the cross-store markdown comparison
+  report
+- `run_scrape` - trigger a fresh scrape for one store/appliance family
 
 ## Notes
 
