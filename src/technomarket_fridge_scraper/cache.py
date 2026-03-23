@@ -33,6 +33,27 @@ class ApplianceMetadataCache:
             "ean": entry.get("ean"),
         }
 
+    def seed_from_rows(self, rows: list[dict[str, object]]) -> int:
+        seeded = 0
+        for row in rows:
+            product_code = str(row.get("product_code") or "").strip()
+            url = str(row.get("url") or "").strip()
+            if not product_code or not url:
+                continue
+            detail_features = list(row.get("detail_features") or [])
+            detail_specs = dict(row.get("detail_specs") or {})
+            ean = row.get("ean")
+            if not detail_features and not detail_specs and not ean:
+                continue
+            self.products[product_code] = {
+                "url": url,
+                "detail_features": detail_features,
+                "detail_specs": detail_specs,
+                "ean": ean,
+            }
+            seeded += 1
+        return seeded
+
     def store(self, product_code: str, url: str, details: dict[str, object]) -> None:
         self.products[product_code] = {
             "url": url,

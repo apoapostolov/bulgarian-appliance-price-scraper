@@ -4,7 +4,80 @@ Scrapes appliance families on [Technomarket.bg](https://www.technomarket.bg/),
 [Technopolis.bg](https://www.technopolis.bg/), and [Zora.bg](https://zora.bg/)
 and exports the currently in-stock products to CSV and JSON.
 
-## What it does
+## AI Agents
+
+Agents that support skills can use this repo as a purchase-research plugin.
+
+Skill path:
+
+- `skills/technobulgarian-scraper/SKILL.md`
+
+To install it in an agent workspace, copy or symlink the `skills/`
+subdirectory into the agent's skill directory, or point the agent at this
+repository and load the skill directly from that path.
+
+The skill tells agents how to:
+
+- Read the latest JSON exports and comparison report
+- Match products across stores by EAN first, then brand/model
+- Compare price, energy class, capacity, dimensions, and other specs
+- Turn the scraper output into buyer-guide recommendations
+- Keep budget thresholds explicit and cite the store and product IDs used
+
+## MCP
+
+The preferred integration path is the MCP server wrapper. It gives agents a
+structured interface for querying the latest exports, searching products, and
+building comparison reports without parsing files manually.
+
+### Install
+
+Install the project dependencies first:
+
+```bash
+pip install -e .
+```
+
+Run the server:
+
+```bash
+bulgarian-appliance-price-scraper-mcp
+```
+
+Or launch it with Python:
+
+```bash
+python -m bulgarian_appliance_price_scraper.mcp_server
+```
+
+Example client configuration:
+
+```json
+{
+  "mcpServers": {
+    "bulgarian-appliance-price-scraper": {
+      "command": "bulgarian-appliance-price-scraper-mcp",
+      "cwd": "/path/to/bulgarian-appliance-price-scraper"
+    }
+  }
+}
+```
+
+Available tools:
+
+- `list_latest_exports` - list the latest JSON export for each store and
+  appliance family
+- `search_products` - search the latest exports by SKU, EAN, model, or title
+- `build_comparison_report` - render the cross-store markdown comparison
+  report
+- `run_scrape` - trigger a fresh scrape for one store/appliance family
+
+## CLI Run
+
+Use the CLI when you want a full scrape job, file exports, or a complete
+cross-store comparison report.
+
+### What it does
 
 - Fetches HTML with `requests` and falls back to headless Chromium if needed.
 - Parses the product cards from the live DOM.
@@ -15,7 +88,6 @@ and exports the currently in-stock products to CSV and JSON.
 - Filters to items that have an active `Add to cart` button.
 - Writes timestamped output files under `output/`.
 - Generates a cross-store comparison markdown report when the full launcher runs.
-- Exposes a lightweight MCP server wrapper for agent consumers.
 
 ## Appliance Types
 
@@ -99,72 +171,6 @@ The report table includes:
 - ID
 - Best store offer
 - Price per store
-
-## AI Agents
-
-Agents that support skills can use this repo as a purchase-research plugin.
-
-Skill path:
-
-- `skills/technobulgarian-scraper/SKILL.md`
-
-To install it in an agent workspace, copy or symlink the `skills/`
-subdirectory into the agent's skill directory, or point the agent at this
-repository and load the skill directly from that path.
-
-The skill tells agents how to:
-
-- Read the latest JSON exports and comparison report
-- Match products across stores by EAN first, then brand/model
-- Compare price, energy class, capacity, dimensions, and other specs
-- Turn the scraper output into buyer-guide recommendations
-- Keep budget thresholds explicit and cite the store and product IDs used
-
-## MCP Server
-
-The repository also includes a thin [Model Context Protocol](https://modelcontextprotocol.io/)
-server wrapper for agents that prefer structured tool calls over parsing files
-directly.
-
-Install the project dependencies first:
-
-```bash
-pip install -e .
-```
-
-Run the server:
-
-```bash
-bulgarian-appliance-price-scraper-mcp
-```
-
-Or launch it with Python:
-
-```bash
-python -m bulgarian_appliance_price_scraper.mcp_server
-```
-
-Example client configuration:
-
-```json
-{
-  "mcpServers": {
-    "bulgarian-appliance-price-scraper": {
-      "command": "bulgarian-appliance-price-scraper-mcp",
-      "cwd": "/path/to/bulgarian-appliance-price-scraper"
-    }
-  }
-}
-```
-
-Available tools:
-
-- `list_latest_exports` - list the latest JSON export for each store and
-  appliance family
-- `search_products` - search the latest exports by SKU, EAN, model, or title
-- `build_comparison_report` - render the cross-store markdown comparison
-  report
-- `run_scrape` - trigger a fresh scrape for one store/appliance family
 
 ## Notes
 

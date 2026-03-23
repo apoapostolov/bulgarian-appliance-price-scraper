@@ -45,6 +45,26 @@ def _merge_categories(*category_groups: list[Category]) -> list[Category]:
     return list(merged.values())
 
 
+def _latest_export_path(output_dir: Path, output_prefix: str) -> Path | None:
+    candidates = sorted(output_dir.glob(f"{output_prefix}_*.json"))
+    if not candidates:
+        return None
+    return candidates[-1]
+
+
+def _seed_metadata_cache_from_latest_export(config: ScraperConfig, cache: ApplianceMetadataCache) -> int:
+    export_path = _latest_export_path(config.output_dir, config.profile.output_prefix)
+    if export_path is None:
+        return 0
+    try:
+        payload = json.loads(export_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return 0
+    if not isinstance(payload, list):
+        return 0
+    return cache.seed_from_rows(payload)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Scrape Technomarket, Technopolis, and Zora appliances in stock.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG, help="Path to config.toml")
@@ -152,6 +172,7 @@ def enrich_with_product_details(config: ScraperConfig, rows: list[dict]) -> list
         return rows
 
     cache = ApplianceMetadataCache.load(config.profile.metadata_cache_path)
+    _seed_metadata_cache_from_latest_export(config, cache)
     details_by_url: dict[str, dict[str, object]] = {}
     max_workers = min(4, len(rows)) or 1
     backend = STORE_BACKENDS[config.store]
