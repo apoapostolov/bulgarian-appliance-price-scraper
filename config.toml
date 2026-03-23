@@ -164,6 +164,9 @@ name = "Built-in microwave ovens"
 
 [stores.technopolis.appliance_types.microwave]
 output_prefix = "bulgarian_appliance_price_scraper_technopolis_microwaves"
+metadata_cache_path = "cache/technopolis/microwave_metadata.json"
+in_stock_only = true
+fetch_product_details = true
 category_root_name = "Built-in microwave ovens"
 
 [stores.zora]

@@ -31,6 +31,14 @@ def test_load_technopolis_refrigerator_profile():
     assert config.profile.hub_path.endswith("/P111003")
 
 
+def test_load_technopolis_microwave_profile():
+    config = load_config(CONFIG_PATH, store_override="technopolis", appliance_type_override="microwave")
+    assert config.store == "technopolis"
+    assert config.appliance_type == "microwave"
+    assert config.profile.output_prefix == "bulgarian_appliance_price_scraper_technopolis_microwaves"
+    assert config.profile.metadata_cache_path.as_posix().endswith("microwave_metadata.json")
+
+
 def test_load_zora_profile():
     config = load_config(CONFIG_PATH, store_override="zora", appliance_type_override="microwave")
     assert config.store == "zora"
