@@ -96,6 +96,26 @@ The report table includes:
 - Best store offer
 - Price per store
 
+## AI Agents
+
+Agents that support skills can use this repo as a purchase-research plugin.
+
+Skill path:
+
+- `skills/technobulgarian-scraper/SKILL.md`
+
+To install it in an agent workspace, copy or symlink the `skills/`
+subdirectory into the agent's skill directory, or point the agent at this
+repository and load the skill directly from that path.
+
+The skill tells agents how to:
+
+- Read the latest JSON exports and comparison report
+- Match products across stores by EAN first, then brand/model
+- Compare price, energy class, capacity, dimensions, and other specs
+- Turn the scraper output into buyer-guide recommendations
+- Keep budget thresholds explicit and cite the store and product IDs used
+
 ## Notes
 
 - The scraper treats a product as in stock when the card contains an active
