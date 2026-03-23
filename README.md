@@ -1,4 +1,4 @@
-# technobulgarian_scraper
+# bulgarian-appliance-price-scraper
 
 Scrapes appliance families on [Technomarket.bg](https://www.technomarket.bg/),
 [Technopolis.bg](https://www.technopolis.bg/), and [Zora.bg](https://zora.bg/)
@@ -44,7 +44,7 @@ output prefix.
 ## Setup
 
 ```bash
-cd technobulgarian-scraper
+cd bulgarian-appliance-price-scraper
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -53,9 +53,9 @@ pip install -e .
 ## Run
 
 ```bash
-python -m technobulgarian_scraper.scraper --store technomarket \
+python -m bulgarian_appliance_price_scraper.scraper --store technomarket \
   --appliance-type refrigerator
-python -m technobulgarian_scraper.scraper --store zora \
+python -m bulgarian_appliance_price_scraper.scraper --store zora \
   --appliance-type microwave
 ```
 
@@ -68,18 +68,21 @@ To run every configured store and appliance family in sequence:
 To generate the cross-store comparison report from existing JSON exports:
 
 ```bash
-python -m technobulgarian_scraper.compare --output-dir output
+python -m bulgarian_appliance_price_scraper.compare --output-dir output
 ```
 
 This writes files like:
 
-- `output/technobulgarian_scraper_technomarket_refrigerators_YYYYMMDD_HHMMSS.csv`
-- `output/technobulgarian_scraper_technomarket_refrigerators_YYYYMMDD_HHMMSS.json`
-- `output/technobulgarian_scraper_technopolis_refrigerators_YYYYMMDD_HHMMSS.csv`
-- `output/technobulgarian_scraper_technopolis_refrigerators_YYYYMMDD_HHMMSS.json`
-- `output/technobulgarian_scraper_zora_refrigerators_YYYYMMDD_HHMMSS.csv`
-- `output/technobulgarian_scraper_zora_refrigerators_YYYYMMDD_HHMMSS.json`
-- `output/technobulgarian_scraper_price_comparison.md`
+- `output/bulgarian_appliance_price_scraper_technomarket_refrigerators_YYYYMMDD_HHMMSS.csv`
+- `output/bulgarian_appliance_price_scraper_technomarket_refrigerators_YYYYMMDD_HHMMSS.json`
+- `output/bulgarian_appliance_price_scraper_technomarket_refrigerators_YYYYMMDD_HHMMSS.md`
+- `output/bulgarian_appliance_price_scraper_technopolis_refrigerators_YYYYMMDD_HHMMSS.csv`
+- `output/bulgarian_appliance_price_scraper_technopolis_refrigerators_YYYYMMDD_HHMMSS.json`
+- `output/bulgarian_appliance_price_scraper_technopolis_refrigerators_YYYYMMDD_HHMMSS.md`
+- `output/bulgarian_appliance_price_scraper_zora_refrigerators_YYYYMMDD_HHMMSS.csv`
+- `output/bulgarian_appliance_price_scraper_zora_refrigerators_YYYYMMDD_HHMMSS.json`
+- `output/bulgarian_appliance_price_scraper_zora_refrigerators_YYYYMMDD_HHMMSS.md`
+- `output/bulgarian_appliance_price_scraper_price_comparison.md`
 
 ## Cross-Store Comparison
 
@@ -132,13 +135,13 @@ pip install -e .
 Run the server:
 
 ```bash
-technobulgarian-scraper-mcp
+bulgarian-appliance-price-scraper-mcp
 ```
 
 Or launch it with Python:
 
 ```bash
-python -m technobulgarian_scraper.mcp_server
+python -m bulgarian_appliance_price_scraper.mcp_server
 ```
 
 Example client configuration:
@@ -146,9 +149,9 @@ Example client configuration:
 ```json
 {
   "mcpServers": {
-    "technobulgarian-scraper": {
-      "command": "technobulgarian-scraper-mcp",
-      "cwd": "/path/to/technobulgarian-scraper"
+    "bulgarian-appliance-price-scraper": {
+      "command": "bulgarian-appliance-price-scraper-mcp",
+      "cwd": "/path/to/bulgarian-appliance-price-scraper"
     }
   }
 }

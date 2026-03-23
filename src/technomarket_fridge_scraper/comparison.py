@@ -19,7 +19,7 @@ class ComparisonGroup:
 
 def _latest_json_exports(output_dir: Path) -> list[Path]:
     latest: dict[str, Path] = {}
-    for path in output_dir.glob("technobulgarian_scraper_*.json"):
+    for path in output_dir.glob("bulgarian_appliance_price_scraper_*.json"):
         match = re.match(r"^(.*)_\d{8}_\d{6}$", path.stem)
         if not match:
             continue
@@ -279,7 +279,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     report, _, _ = build_report(args.output_dir)
-    output_file = args.output_file or args.output_dir / f"technobulgarian_scraper_price_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+    output_file = args.output_file or args.output_dir / f"bulgarian_appliance_price_scraper_price_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
     output_file.write_text(report, encoding="utf-8")
     print(output_file)
     return 0

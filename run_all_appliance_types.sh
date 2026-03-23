@@ -34,7 +34,7 @@ for entry in "${STORE_APPLIANCE_TYPES[@]}"; do
   store="${entry%%$'\t'*}"
   appliance_type="${entry#*$'\t'}"
   echo "Running ${store}/${appliance_type}"
-  "$PYTHON_BIN" -m technobulgarian_scraper.scraper \
+  "$PYTHON_BIN" -m bulgarian_appliance_price_scraper.scraper \
     --config "$CONFIG_PATH" \
     --output-dir "$OUTPUT_DIR" \
     --store "$store" \
@@ -42,6 +42,6 @@ for entry in "${STORE_APPLIANCE_TYPES[@]}"; do
 done
 
 echo "Building cross-store comparison report"
-"$PYTHON_BIN" -m technobulgarian_scraper.compare \
+"$PYTHON_BIN" -m bulgarian_appliance_price_scraper.compare \
   --output-dir "$OUTPUT_DIR" \
-  --output-file "$OUTPUT_DIR/technobulgarian_scraper_price_comparison.md"
+  --output-file "$OUTPUT_DIR/bulgarian_appliance_price_scraper_price_comparison.md"

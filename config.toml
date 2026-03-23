@@ -12,7 +12,7 @@ chromium_binaries = ["chromium", "chromium-browser", "google-chrome", "chrome"]
 [stores.technomarket.appliance_types.refrigerator]
 hub_path = "/hladilnitzi"
 category_name_prefix = "Хладилници"
-output_prefix = "technobulgarian_scraper_technomarket_refrigerators"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_refrigerators"
 metadata_cache_path = "cache/technomarket/refrigerator_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -29,7 +29,7 @@ category_texts = [
 
 [stores.technomarket.appliance_types.washing_machine]
 hub_path = "/peralni"
-output_prefix = "technobulgarian_scraper_technomarket_washing_machines"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_washing_machines"
 metadata_cache_path = "cache/technomarket/washing_machine_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -42,7 +42,7 @@ category_texts = [
 
 [stores.technomarket.appliance_types.dishwasher]
 hub_path = "/sydomialna"
-output_prefix = "technobulgarian_scraper_technomarket_dishwashers"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_dishwashers"
 metadata_cache_path = "cache/technomarket/dishwasher_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -52,7 +52,7 @@ category_texts = [
 
 [stores.technomarket.appliance_types.oven]
 hub_path = "/furni"
-output_prefix = "technobulgarian_scraper_technomarket_ovens"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_ovens"
 metadata_cache_path = "cache/technomarket/oven_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -62,7 +62,7 @@ category_texts = [
 
 [stores.technomarket.appliance_types.hob]
 hub_path = "/plotove"
-output_prefix = "technobulgarian_scraper_technomarket_hobs"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_hobs"
 metadata_cache_path = "cache/technomarket/hob_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -72,7 +72,7 @@ category_texts = [
 
 [stores.technomarket.appliance_types.microwave]
 hub_path = "/microvylnova-furna-za-vgrajdane"
-output_prefix = "technobulgarian_scraper_technomarket_microwaves"
+output_prefix = "bulgarian_appliance_price_scraper_technomarket_microwaves"
 metadata_cache_path = "cache/technomarket/microwave_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -90,7 +90,7 @@ chromium_binaries = ["chromium", "chromium-browser", "google-chrome", "chrome"]
 [stores.technopolis.appliance_types.refrigerator]
 hub_path = "/en/Domakinski-elektrouredi/Hladilnici/c/P111003"
 category_root_name = "Refrigerators"
-output_prefix = "technobulgarian_scraper_technopolis_refrigerators"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_refrigerators"
 metadata_cache_path = "cache/technopolis/refrigerator_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -108,7 +108,7 @@ category_texts = [
 [stores.technopolis.appliance_types.washing_machine]
 hub_path = "/en/Domakinski-elektrouredi/Peralni/c/P111001"
 category_root_name = "Washing machines"
-output_prefix = "technobulgarian_scraper_technopolis_washing_machines"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_washing_machines"
 metadata_cache_path = "cache/technopolis/washing_machine_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -124,7 +124,7 @@ category_texts = [
 [stores.technopolis.appliance_types.dishwasher]
 hub_path = "/en/Domakinski-elektrouredi/Sadomiyalni/c/P111005"
 category_root_name = "Dishwashers"
-output_prefix = "technobulgarian_scraper_technopolis_dishwashers"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_dishwashers"
 metadata_cache_path = "cache/technopolis/dishwasher_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -139,7 +139,7 @@ path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Furni-za-vgrazhdane/c/P1111
 name = "Built-in ovens"
 
 [stores.technopolis.appliance_types.oven]
-output_prefix = "technobulgarian_scraper_technopolis_ovens"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_ovens"
 metadata_cache_path = "cache/technopolis/oven_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -151,7 +151,7 @@ path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Plotove-za-vgrazhdane/c/P11
 name = "Built-in hobs"
 
 [stores.technopolis.appliance_types.hob]
-output_prefix = "technobulgarian_scraper_technopolis_hobs"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_hobs"
 metadata_cache_path = "cache/technopolis/hob_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -163,7 +163,7 @@ path = "/en/Domakinski-elektrouredi/Uredi-za-vgrazhdane/Mikrovalnovi-za-vgrazhda
 name = "Built-in microwave ovens"
 
 [stores.technopolis.appliance_types.microwave]
-output_prefix = "technobulgarian_scraper_technopolis_microwaves"
+output_prefix = "bulgarian_appliance_price_scraper_technopolis_microwaves"
 category_root_name = "Built-in microwave ovens"
 
 [stores.zora]
@@ -184,7 +184,7 @@ path = "/category/hladilnitsi-edna-vrata"
 name = "One-door refrigerators"
 
 [stores.zora.appliance_types.refrigerator]
-output_prefix = "technobulgarian_scraper_zora_refrigerators"
+output_prefix = "bulgarian_appliance_price_scraper_zora_refrigerators"
 metadata_cache_path = "cache/zora/refrigerator_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -198,7 +198,7 @@ path = "/category/peralni-sas-sushilni"
 name = "Washing machines with dryer"
 
 [stores.zora.appliance_types.washing_machine]
-output_prefix = "technobulgarian_scraper_zora_washing_machines"
+output_prefix = "bulgarian_appliance_price_scraper_zora_washing_machines"
 metadata_cache_path = "cache/zora/washing_machine_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -209,7 +209,7 @@ path = "/category/mialni"
 name = "Dishwashers"
 
 [stores.zora.appliance_types.dishwasher]
-output_prefix = "technobulgarian_scraper_zora_dishwashers"
+output_prefix = "bulgarian_appliance_price_scraper_zora_dishwashers"
 metadata_cache_path = "cache/zora/dishwasher_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -220,7 +220,7 @@ path = "/category/furni"
 name = "Built-in ovens"
 
 [stores.zora.appliance_types.oven]
-output_prefix = "technobulgarian_scraper_zora_ovens"
+output_prefix = "bulgarian_appliance_price_scraper_zora_ovens"
 metadata_cache_path = "cache/zora/oven_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -240,7 +240,7 @@ path = "/category/kombinirani-plotove"
 name = "Combined hobs"
 
 [stores.zora.appliance_types.hob]
-output_prefix = "technobulgarian_scraper_zora_hobs"
+output_prefix = "bulgarian_appliance_price_scraper_zora_hobs"
 metadata_cache_path = "cache/zora/hob_metadata.json"
 in_stock_only = true
 fetch_product_details = true
@@ -254,7 +254,7 @@ path = "/category/mikrovalnovi"
 name = "Microwaves"
 
 [stores.zora.appliance_types.microwave]
-output_prefix = "technobulgarian_scraper_zora_microwaves"
+output_prefix = "bulgarian_appliance_price_scraper_zora_microwaves"
 metadata_cache_path = "cache/zora/microwave_metadata.json"
 in_stock_only = true
 fetch_product_details = true

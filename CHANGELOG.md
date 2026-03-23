@@ -2,7 +2,7 @@
 
 ## 0.1.0 - 2026-03-23
 
-First public release of `technobulgarian_scraper`.
+First public release of `bulgarian-appliance-price-scraper`.
 
 ### Highlights
 
@@ -12,8 +12,8 @@ First public release of `technobulgarian_scraper`.
   machines, dishwashers, ovens, hobs, and microwaves.
 - Live category discovery, product-page enrichment, and cached detail-page
   metadata.
-- Normalized JSON and CSV exports with English field names, normalized prices,
-  and structured appliance specs.
+- Normalized JSON, CSV, and Markdown exports with English field names,
+  normalized prices, and structured appliance specs.
 - Cross-store Markdown comparison report that matches products by EAN first,
   then normalized brand/model when needed.
 - Thin MCP server wrapper for agent workflows and buyer-guide automation.

@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "technobulgarian-scraper"
+name = "bulgarian-appliance-price-scraper"
 version = "0.1.0"
 description = "Scrape Bulgarian appliance listings from Technomarket, Technopolis, and Zora"
 requires-python = ">=3.11"
@@ -14,7 +14,9 @@ dependencies = [
 ]
 
 [project.scripts]
-technobulgarian-scraper-mcp = "technobulgarian_scraper.mcp_server:main"
+bulgarian-appliance-price-scraper = "bulgarian_appliance_price_scraper.scraper:main"
+bulgarian-appliance-price-scraper-compare = "bulgarian_appliance_price_scraper.compare:main"
+bulgarian-appliance-price-scraper-mcp = "bulgarian_appliance_price_scraper.mcp_server:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from technobulgarian_scraper import mcp_server
+from bulgarian_appliance_price_scraper import mcp_server
 
 
 def _write_export(path, rows):
@@ -10,8 +10,8 @@ def _write_export(path, rows):
 
 
 def test_latest_export_payloads_and_match_scoring(tmp_path):
-    technomarket_export = tmp_path / "technobulgarian_scraper_technomarket_refrigerators_20260323_101010.json"
-    technopolis_export = tmp_path / "technobulgarian_scraper_technopolis_refrigerators_20260323_101011.json"
+    technomarket_export = tmp_path / "bulgarian_appliance_price_scraper_technomarket_refrigerators_20260323_101010.json"
+    technopolis_export = tmp_path / "bulgarian_appliance_price_scraper_technopolis_refrigerators_20260323_101011.json"
     _write_export(
         technomarket_export,
         [
@@ -64,7 +64,7 @@ def test_latest_export_payloads_and_match_scoring(tmp_path):
 
 
 def test_latest_export_for_store_type(tmp_path):
-    export = tmp_path / "technobulgarian_scraper_zora_microwaves_20260323_111111.json"
+    export = tmp_path / "bulgarian_appliance_price_scraper_zora_microwaves_20260323_111111.json"
     _write_export(
         export,
         [

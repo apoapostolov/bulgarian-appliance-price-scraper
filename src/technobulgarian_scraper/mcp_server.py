@@ -15,7 +15,7 @@ DEFAULT_REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT_DIR = DEFAULT_REPO_ROOT / "output"
 DEFAULT_CONFIG = DEFAULT_REPO_ROOT / "config.toml"
 EXPORT_PATTERN = re.compile(
-    r"^technobulgarian_scraper_(?P<store>[a-z]+)_(?P<appliance>[a-z_]+)_(?P<stamp>\d{8}_\d{6})$"
+    r"^bulgarian_appliance_price_scraper_(?P<store>[a-z]+)_(?P<appliance>[a-z_]+)_(?P<stamp>\d{8}_\d{6})$"
 )
 APPLIANCE_ALIASES = {
     "refrigerators": "refrigerator",
@@ -51,11 +51,11 @@ def _normalize_text(text: object | None) -> str:
 
 def _latest_json_exports(output_dir: Path) -> list[Path]:
     latest: dict[str, Path] = {}
-    for path in output_dir.glob("technobulgarian_scraper_*.json"):
+    for path in output_dir.glob("bulgarian_appliance_price_scraper_*.json"):
         match = EXPORT_PATTERN.match(path.stem)
         if not match:
             continue
-        prefix = f"technobulgarian_scraper_{match.group('store')}_{match.group('appliance')}"
+        prefix = f"bulgarian_appliance_price_scraper_{match.group('store')}_{match.group('appliance')}"
         previous = latest.get(prefix)
         if previous is None or path.stat().st_mtime > previous.stat().st_mtime:
             latest[prefix] = path
@@ -173,7 +173,7 @@ def _latest_export_for_store_type(
 
 def build_server():
     FastMCP = _import_fastmcp()
-    server = FastMCP("technobulgarian_scraper")
+    server = FastMCP("bulgarian_appliance_price_scraper")
 
     @server.tool()
     def list_latest_exports(output_dir: str = "output") -> dict[str, object]:
@@ -266,7 +266,7 @@ def build_server():
         command = [
             sys.executable,
             "-m",
-            "technobulgarian_scraper.scraper",
+            "bulgarian_appliance_price_scraper.scraper",
             "--store",
             store,
             "--appliance-type",
@@ -303,7 +303,7 @@ def build_server():
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the technobulgarian_scraper MCP server.")
+    parser = argparse.ArgumentParser(description="Run the bulgarian_appliance_price_scraper MCP server.")
     parser.add_argument(
         "--transport",
         default="stdio",

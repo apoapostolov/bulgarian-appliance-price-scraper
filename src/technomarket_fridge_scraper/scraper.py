@@ -236,6 +236,46 @@ def write_json(path: Path, rows: list[dict]) -> None:
     )
 
 
+def _format_price(value: int | float | None) -> str:
+    if value is None:
+        return "-"
+    if isinstance(value, int):
+        return f"{value:,}".replace(",", " ")
+    text = f"{value:.2f}".rstrip("0").rstrip(".")
+    if "." not in text:
+        return f"{int(text):,}".replace(",", " ")
+    left, right = text.split(".", 1)
+    return f"{int(left):,}".replace(",", " ") + "." + right
+
+
+def write_markdown(path: Path, rows: list[dict], config: ScraperConfig) -> None:
+    lines = [
+        f"# {config.store} {config.appliance_type.replace('_', ' ')} scrape",
+        "",
+        f"- Store: `{config.store}`",
+        f"- Appliance type: `{config.appliance_type}`",
+        f"- Rows: `{len(rows)}`",
+        "",
+        "| Store | Category | Product | Product code | Price BGN | Price EUR | Energy class | URL |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            "| {store} | {category} | {product} | {code} | {price_bgn} | {price_eur} | {energy_class} | {url} |".format(
+                store=row.get("store", ""),
+                category=row.get("category_name", ""),
+                product=row.get("title") or row.get("name") or "",
+                code=row.get("product_code", ""),
+                price_bgn=_format_price(row.get("price_bgn")),
+                price_eur=_format_price(row.get("price_eur")),
+                energy_class=row.get("energy_class") or "",
+                url=row.get("url", ""),
+            )
+        )
+    lines.append("")
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def main() -> int:
     args = parse_args()
     config = load_config(args.config, store_override=args.store, appliance_type_override=args.appliance_type)
@@ -251,12 +291,15 @@ def main() -> int:
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     csv_path = output_dir / f"{config.profile.output_prefix}_{stamp}.csv"
     json_path = output_dir / f"{config.profile.output_prefix}_{stamp}.json"
+    md_path = output_dir / f"{config.profile.output_prefix}_{stamp}.md"
     write_csv(csv_path, rows)
     write_json(json_path, rows)
+    write_markdown(md_path, rows, config)
 
     print(f"Wrote {len(rows)} in-stock products")
     print(csv_path)
     print(json_path)
+    print(md_path)
     return 0
 
 

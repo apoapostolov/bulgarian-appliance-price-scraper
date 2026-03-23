@@ -1,6 +1,6 @@
 ---
-name: technobulgarian-scraper
-description: Use technobulgarian_scraper outputs to compare Bulgarian appliance offers across Technomarket, Technopolis, and Zora, then turn the results into buyer-guide recommendations.
+name: bulgarian-appliance-price-scraper
+description: Use bulgarian_appliance_price_scraper outputs to compare Bulgarian appliance offers across Technomarket, Technopolis, and Zora, then turn the results into buyer-guide recommendations.
 metadata:
   short-description: Compare Bulgarian appliance offers for buying guidance
 ---
@@ -15,7 +15,7 @@ shortlists, or buyer guides for Bulgarian appliances.
 Use the latest files in `output/`:
 
 - JSON exports for raw product data
-- `technobulgarian_scraper_price_comparison.md` for cross-store matches
+- `bulgarian_appliance_price_scraper_price_comparison.md` for cross-store matches
 
 Prefer the newest timestamped export for each store and appliance type.
 
