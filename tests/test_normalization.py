@@ -2,12 +2,22 @@ from technomarket_fridge_scraper.normalization import (
     canonicalize_spec_value,
     parse_energy_class,
     parse_price_to_int,
+    parse_price_to_number,
 )
 
 
 def test_parse_price_to_int():
     assert parse_price_to_int("1.171 BGN") == 1171
     assert parse_price_to_int("663.03 лв.") == 66303
+
+
+def test_parse_price_to_number():
+    assert parse_price_to_number("528.99 лв.") == 528.99
+    assert parse_price_to_number("140,00 лв.") == 140.0
+    assert parse_price_to_number("140, 00 лв.") == 140.0
+    assert parse_price_to_number("71, 58 €") == 71.58
+    assert parse_price_to_number("1.171 лв.") == 1171
+    assert parse_price_to_number("1.022,07 €") == 1022.07
 
 
 def test_parse_energy_class():

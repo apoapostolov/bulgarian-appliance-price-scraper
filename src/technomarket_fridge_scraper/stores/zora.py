@@ -102,7 +102,7 @@ def _canon_label(label: str) -> str:
     return re.sub(r"[^0-9A-Za-z]+", "_", label.lower()).strip("_")
 
 
-def _parse_price_pair(text: str | None) -> tuple[int | None, int | None]:
+def _parse_price_pair(text: str | None) -> tuple[int | float | None, int | float | None]:
     if not text:
         return None, None
     if "<" in text and ">" in text:
