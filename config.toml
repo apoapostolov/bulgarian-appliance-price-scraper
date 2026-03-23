@@ -1,0 +1,261 @@
+[scraper]
+store = "technomarket"
+appliance_type = "refrigerator"
+
+[stores.technomarket]
+base_url = "https://www.technomarket.bg"
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+output_dir = "output"
+render_timeout_ms = 15000
+chromium_binaries = ["chromium", "chromium-browser", "google-chrome", "chrome"]
+
+[stores.technomarket.appliance_types.refrigerator]
+hub_path = "/hladilnitzi"
+category_name_prefix = "Хладилници"
+output_prefix = "technobulgarian_scraper_technomarket_refrigerators"
+metadata_cache_path = "cache/technomarket/refrigerator_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "С долна камера",
+  "С горна камера",
+  "Side By Side",
+  "С една врата",
+  "Хладилни витрини",
+  "Фризери",
+  "Всички хладилници",
+  "Винарни",
+]
+
+[stores.technomarket.appliance_types.washing_machine]
+hub_path = "/peralni"
+output_prefix = "technobulgarian_scraper_technomarket_washing_machines"
+metadata_cache_path = "cache/technomarket/washing_machine_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Перални с предно зареждане",
+  "Перални с горно зареждане",
+  "Перални със сушилни",
+  "Всички перални",
+]
+
+[stores.technomarket.appliance_types.dishwasher]
+hub_path = "/sydomialna"
+output_prefix = "technobulgarian_scraper_technomarket_dishwashers"
+metadata_cache_path = "cache/technomarket/dishwasher_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Съдомиялни за вграждане",
+]
+
+[stores.technomarket.appliance_types.oven]
+hub_path = "/furni"
+output_prefix = "technobulgarian_scraper_technomarket_ovens"
+metadata_cache_path = "cache/technomarket/oven_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Фурни за вграждане",
+]
+
+[stores.technomarket.appliance_types.hob]
+hub_path = "/plotove"
+output_prefix = "technobulgarian_scraper_technomarket_hobs"
+metadata_cache_path = "cache/technomarket/hob_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Плотове",
+]
+
+[stores.technomarket.appliance_types.microwave]
+hub_path = "/microvylnova-furna-za-vgrajdane"
+output_prefix = "technobulgarian_scraper_technomarket_microwaves"
+metadata_cache_path = "cache/technomarket/microwave_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Микровълнови фурни за вграждане",
+]
+
+[stores.technopolis]
+base_url = "https://www.technopolis.bg"
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+output_dir = "output"
+render_timeout_ms = 15000
+chromium_binaries = ["chromium", "chromium-browser", "google-chrome", "chrome"]
+
+[stores.technopolis.appliance_types.refrigerator]
+hub_path = "/en/Domakinski-elektrouredi/Hladilnici/c/P111003"
+category_root_name = "Refrigerators"
+output_prefix = "technobulgarian_scraper_technopolis_refrigerators"
+metadata_cache_path = "cache/technopolis/refrigerator_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Refrigerator bottom freezer",
+  "Refrigerator upper freezer",
+  "Refrigerators Side by Side",
+  "One Door Refrigerators",
+  "Minibar",
+  "Build-In Refrigerators",
+  "Wine coolers",
+  "Show windows",
+]
+
+[stores.technopolis.appliance_types.washing_machine]
+hub_path = "/en/Domakinski-elektrouredi/Peralni/c/P111001"
+category_root_name = "Washing machines"
+output_prefix = "technobulgarian_scraper_technopolis_washing_machines"
+metadata_cache_path = "cache/technopolis/washing_machine_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Front loading washing machines",
+  "Top loading washing machines",
+  "Washing machines & Dryers",
+  "Washing machines&Dryers",
+  "Built-in washing machines",
+  "Built-in Washing machines&Dryers",
+]
+
+[stores.technopolis.appliance_types.dishwasher]
+hub_path = "/en/Domakinski-elektrouredi/Sadomiyalni/c/P111005"
+category_root_name = "Dishwashers"
+output_prefix = "technobulgarian_scraper_technopolis_dishwashers"
+metadata_cache_path = "cache/technopolis/dishwasher_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+category_texts = [
+  "Freestanding dishwashers",
+  "Built-in Dishwashers",
+  "Compact dishwashers",
+]
+
+[[stores.technopolis.appliance_types.oven.categories]]
+path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Furni-za-vgrazhdane/c/P11110101"
+name = "Built-in ovens"
+
+[stores.technopolis.appliance_types.oven]
+output_prefix = "technobulgarian_scraper_technopolis_ovens"
+metadata_cache_path = "cache/technopolis/oven_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Furni-za-vgrazhdane/c/P11110101"
+category_root_name = "Built-in ovens"
+
+[[stores.technopolis.appliance_types.hob.categories]]
+path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Plotove-za-vgrazhdane/c/P11110201"
+name = "Built-in hobs"
+
+[stores.technopolis.appliance_types.hob]
+output_prefix = "technobulgarian_scraper_technopolis_hobs"
+metadata_cache_path = "cache/technopolis/hob_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/en/Domakinski-elektrouredi/Gotvarski-pechki/Plotove-za-vgrazhdane/c/P11110201"
+category_root_name = "Built-in hobs"
+
+[[stores.technopolis.appliance_types.microwave.categories]]
+path = "/en/Domakinski-elektrouredi/Uredi-za-vgrazhdane/Mikrovalnovi-za-vgrazhdane/c/P11110701"
+name = "Built-in microwave ovens"
+
+[stores.technopolis.appliance_types.microwave]
+output_prefix = "technobulgarian_scraper_technopolis_microwaves"
+category_root_name = "Built-in microwave ovens"
+
+[stores.zora]
+base_url = "https://zora.bg"
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+output_dir = "output"
+render_timeout_ms = 15000
+chromium_binaries = ["chromium", "chromium-browser", "google-chrome", "chrome"]
+
+[[stores.zora.appliance_types.refrigerator.categories]]
+path = "/category/hladilnici-s-frizer"
+name = "Refrigerators with freezer"
+[[stores.zora.appliance_types.refrigerator.categories]]
+path = "/category/hladilnici-s-gorna-kamera"
+name = "Top freezer refrigerators"
+[[stores.zora.appliance_types.refrigerator.categories]]
+path = "/category/hladilnitsi-edna-vrata"
+name = "One-door refrigerators"
+
+[stores.zora.appliance_types.refrigerator]
+output_prefix = "technobulgarian_scraper_zora_refrigerators"
+metadata_cache_path = "cache/zora/refrigerator_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/domakinski-elektrouredi-hladilnici"
+
+[[stores.zora.appliance_types.washing_machine.categories]]
+path = "/category/peralni-mashini"
+name = "Washing machines"
+[[stores.zora.appliance_types.washing_machine.categories]]
+path = "/category/peralni-sas-sushilni"
+name = "Washing machines with dryer"
+
+[stores.zora.appliance_types.washing_machine]
+output_prefix = "technobulgarian_scraper_zora_washing_machines"
+metadata_cache_path = "cache/zora/washing_machine_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/domakinski-elektrouredi-peralni"
+
+[[stores.zora.appliance_types.dishwasher.categories]]
+path = "/category/mialni"
+name = "Dishwashers"
+
+[stores.zora.appliance_types.dishwasher]
+output_prefix = "technobulgarian_scraper_zora_dishwashers"
+metadata_cache_path = "cache/zora/dishwasher_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/domakinski-elektrouredi-sadomiyalni"
+
+[[stores.zora.appliance_types.oven.categories]]
+path = "/category/furni"
+name = "Built-in ovens"
+
+[stores.zora.appliance_types.oven]
+output_prefix = "technobulgarian_scraper_zora_ovens"
+metadata_cache_path = "cache/zora/oven_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/uredi-za-vgrajdane-furni"
+
+[[stores.zora.appliance_types.hob.categories]]
+path = "/category/kotloni"
+name = "Hobs"
+[[stores.zora.appliance_types.hob.categories]]
+path = "/category/keramicen-plot"
+name = "Ceramic hobs"
+[[stores.zora.appliance_types.hob.categories]]
+path = "/category/gazovi-plotove"
+name = "Gas hobs"
+[[stores.zora.appliance_types.hob.categories]]
+path = "/category/kombinirani-plotove"
+name = "Combined hobs"
+
+[stores.zora.appliance_types.hob]
+output_prefix = "technobulgarian_scraper_zora_hobs"
+metadata_cache_path = "cache/zora/hob_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/uredi-za-vgrajdane-plotove"
+
+[[stores.zora.appliance_types.microwave.categories]]
+path = "/category/mikrovalnovi-furni"
+name = "Microwaves"
+[[stores.zora.appliance_types.microwave.categories]]
+path = "/category/mikrovalnovi"
+name = "Microwaves"
+
+[stores.zora.appliance_types.microwave]
+output_prefix = "technobulgarian_scraper_zora_microwaves"
+metadata_cache_path = "cache/zora/microwave_metadata.json"
+in_stock_only = true
+fetch_product_details = true
+hub_path = "/page/uredi-za-vgrajdane-mikrovalnovi-furni"

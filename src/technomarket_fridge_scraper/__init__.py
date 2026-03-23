@@ -1,0 +1,2 @@
+"""Technomarket refrigerator scraper."""
+
