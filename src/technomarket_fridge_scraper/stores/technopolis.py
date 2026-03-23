@@ -76,10 +76,13 @@ def discover_categories_from_html(
     soup = BeautifulSoup(html, "html.parser")
     categories: list[Category] = []
     seen: set[str] = set()
+    nav_glyphs = {"«", "‹", "›", "»"}
     for anchor in soup.select('a[href*="/c/"]'):
         text = _clean_text(anchor.get_text(" ", strip=True))
         href = anchor.get("href", "")
         if not text or href in seen:
+            continue
+        if text in nav_glyphs or text.isdigit():
             continue
         if not href.startswith("/en/") or "/c/" not in href:
             continue
