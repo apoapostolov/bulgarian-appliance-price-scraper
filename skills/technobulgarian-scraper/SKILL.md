@@ -43,6 +43,30 @@ Prefer the newest timestamped export for each store and appliance type.
 6. If a higher-priced item materially improves efficiency, capacity, or fit,
    call out the tradeoff explicitly.
 
+## Online Spec Lookup
+
+Use this when the scraper output is missing a key spec or the model is only
+partially described.
+
+1. Search the exact `ean` first.
+2. If `ean` is missing, search the exact `sku`, then the exact model string
+   from the title.
+3. Use quoted searches for the exact identifier and combine it with the brand
+   and store name when needed.
+4. Prefer manufacturer pages, store product pages, PDF manuals, and retailer
+   spec sheets over blogs or marketplace listings.
+5. Extract only fields that matter for purchase decisions:
+   - dimensions
+   - capacity / volume
+   - energy class
+   - power or noise
+   - door opening or freezer position
+   - warranty
+6. Treat conflicting specs as unresolved until at least two reliable sources
+   agree.
+7. Add the source URL or page name to the buyer-guide notes when a spec was
+   filled from the web rather than the scraper.
+
 ## Output Style
 
 When producing a buyer guide, include:
