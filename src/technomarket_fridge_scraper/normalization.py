@@ -114,7 +114,7 @@ def parse_price_to_number(text: str | None) -> int | float | None:
     if not text:
         return None
     cleaned = text.replace("\xa0", " ").strip()
-    digits = re.sub(r"[^0-9,.\s]", "", cleaned).replace(" ", "")
+    digits = re.sub(r"[^0-9,.\s]", "", cleaned).replace(" ", "").rstrip(".,")
     if not digits:
         return None
 

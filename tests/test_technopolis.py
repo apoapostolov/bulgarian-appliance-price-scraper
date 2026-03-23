@@ -134,7 +134,7 @@ def test_extract_products_technopolis():
     assert row["store"] == "technopolis"
     assert row["product_code"] == "653705"
     assert row["price_eur"] == 199.9
-    assert row["price_bgn"] == 39097
+    assert row["price_bgn"] == 390.97
     assert row["energy_class"] == "D"
 
 

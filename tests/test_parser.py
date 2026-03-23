@@ -59,7 +59,7 @@ def test_extract_products():
     assert row["sku"] == "09220872"
     assert row["brand"] == "GORENJE"
     assert row["name"] == "RK416EPS4"
-    assert row["price_bgn"] == 66303
+    assert row["price_bgn"] == 663.03
     assert row["price_eur"] == 1022.07
     assert row["old_price_bgn"] is None
     assert row["old_price_eur"] is None

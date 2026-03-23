@@ -17,9 +17,9 @@ class ApplianceProduct:
     title: str
     url: str
     in_stock: bool
-    price_bgn: int | None
+    price_bgn: int | float | None
     price_eur: int | float | None
-    old_price_bgn: int | None
+    old_price_bgn: int | float | None
     old_price_eur: int | float | None
     energy_class: str | None
     specs: dict[str, object]

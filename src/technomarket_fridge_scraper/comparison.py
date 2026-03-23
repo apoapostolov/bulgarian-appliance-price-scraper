@@ -188,21 +188,23 @@ def group_compared_products(rows: list[dict[str, object]]) -> list[ComparisonGro
     groups: list[ComparisonGroup] = []
     for match_key, items in grouped.items():
         stores = {str(item.get("store", "")) for item in items if item.get("store")}
-        priced_items = [item for item in items if isinstance(item.get("price_bgn"), int)]
+        priced_items = [
+            item for item in items if isinstance(item.get("price_bgn"), (int, float))
+        ]
         if len(stores) < 2 or len(priced_items) < 2:
             continue
-        best = min(priced_items, key=lambda item: int(item["price_bgn"]))
+        best = min(priced_items, key=lambda item: float(item["price_bgn"]))
         best_store = str(best.get("store", ""))
         offers = sorted(
             (
                 {
                     "store": str(item.get("store", "")),
-                    "price_bgn": int(item["price_bgn"]),
+                    "price_bgn": float(item["price_bgn"]),
                     "url": str(item.get("url", "")),
                 }
                 for item in priced_items
             ),
-            key=lambda item: (item["price_bgn"], item["store"]),
+            key=lambda item: (float(item["price_bgn"]), item["store"]),
         )
         groups.append(
             ComparisonGroup(
@@ -247,7 +249,7 @@ def render_markdown(groups: list[ComparisonGroup], source_files: list[Path]) -> 
         "| --- | --- | --- | --- |",
     ])
     for group in groups:
-        best_offer = min(group.offers, key=lambda item: (item["price_bgn"], item["store"]))
+        best_offer = min(group.offers, key=lambda item: (float(item["price_bgn"]), item["store"]))
         prices = "; ".join(
             f"{offer['store']}: {_format_bgn(offer['price_bgn'])}"
             for offer in group.offers

@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 from ..config import Category
 from ..models import ApplianceProduct
-from ..normalization import canonicalize_spec_value, parse_energy_class, parse_price_to_int, parse_price_to_number
+from ..normalization import canonicalize_spec_value, parse_energy_class, parse_price_to_number
 
 
 _LABEL_MAP = {
@@ -110,7 +110,7 @@ def _parse_price_pair(text: str | None) -> tuple[int | None, int | None]:
     eur_match = re.search(r"([\d.,\s]+)\s*€", text)
     bgn_match = re.search(r"([\d.,\s]+)\s*лв\.", text)
     price_eur = parse_price_to_number(eur_match.group(1).replace(" ", "")) if eur_match else None
-    price_bgn = parse_price_to_int(bgn_match.group(1).replace(" ", "")) if bgn_match else None
+    price_bgn = parse_price_to_number(bgn_match.group(1).replace(" ", "")) if bgn_match else None
     return price_bgn, price_eur
 
 

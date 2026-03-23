@@ -231,7 +231,7 @@ def build_server():
         matches.sort(
             key=lambda item: (
                 -int(item["score"]),
-                int(item["price_bgn"]) if isinstance(item.get("price_bgn"), int) else 10**12,
+                float(item["price_bgn"]) if isinstance(item.get("price_bgn"), (int, float)) else 10**12,
                 _clean_text(item.get("store")),
                 _clean_text(item.get("name")),
             )

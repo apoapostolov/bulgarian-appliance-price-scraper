@@ -96,7 +96,7 @@ def test_extract_products_zora():
     assert row["store"] == "zora"
     assert row["product_code"] == "144916"
     assert row["price_eur"] == 59.99
-    assert row["price_bgn"] == 11733
+    assert row["price_bgn"] == 117.33
     assert row["energy_class"] is None
     assert row["specs"]["capacity_l"] == 20
     assert row["specs"]["warranty_months"] == 24

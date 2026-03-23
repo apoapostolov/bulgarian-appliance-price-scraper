@@ -8,8 +8,7 @@ from bs4 import BeautifulSoup
 
 from ..config import Category
 from ..models import ApplianceProduct
-from ..normalization import canonicalize_label, canonicalize_spec_value, parse_price_to_int
-from ..normalization import parse_price_to_number
+from ..normalization import canonicalize_label, canonicalize_spec_value, parse_price_to_number
 
 
 def _load_state(html: str) -> dict[str, object]:
@@ -30,7 +29,7 @@ def _clean_text(text: str | None) -> str | None:
     return cleaned or None
 
 
-def _first_price_pair(card_text: str | None) -> tuple[int | None, int | float | None]:
+def _first_price_pair(card_text: str | None) -> tuple[int | float | None, int | float | None]:
     if not card_text:
         return None, None
     match = re.search(
@@ -39,7 +38,7 @@ def _first_price_pair(card_text: str | None) -> tuple[int | None, int | float | 
     )
     if not match:
         return None, None
-    return parse_price_to_int(match.group(2)), parse_price_to_number(match.group(1))
+    return parse_price_to_number(match.group(2)), parse_price_to_number(match.group(1))
 
 
 def extract_total_pages(soup: BeautifulSoup) -> int:
