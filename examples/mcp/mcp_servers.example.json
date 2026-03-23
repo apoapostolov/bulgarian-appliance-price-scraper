@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "technobulgarian-scraper": {
-      "command": "technobulgarian-scraper-mcp",
-      "cwd": "/path/to/technobulgarian-scraper"
-    }
-  }
-}

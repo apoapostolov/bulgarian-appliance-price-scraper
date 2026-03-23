@@ -17,5 +17,5 @@
 - Added a cross-store Markdown comparison report that groups the same product
   across stores and highlights the lowest BGN offer.
 - Added an MCP server wrapper for agent workflows and documented how to run it.
-- Added MCP client examples for Claude Desktop and OpenClaw.
+- Removed MCP client examples that were not useful.
 - Removed stale fridge-specific cache and output snapshots from the repository.
