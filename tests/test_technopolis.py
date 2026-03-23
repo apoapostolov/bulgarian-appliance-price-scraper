@@ -133,7 +133,7 @@ def test_extract_products_technopolis():
     row = rows[0].to_dict()
     assert row["store"] == "technopolis"
     assert row["product_code"] == "653705"
-    assert row["price_eur"] == 19990
+    assert row["price_eur"] == 199.9
     assert row["price_bgn"] == 39097
     assert row["energy_class"] == "D"
 

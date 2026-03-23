@@ -25,7 +25,7 @@ SAMPLE_HTML = """
       <div class="action">
         <div class="price">
           <span>
-            <tm-price><span class="bgn_price">663.03 лв.</span><span class="euro_price">339 €</span></tm-price>
+            <tm-price><span class="bgn_price">663.03 лв.</span><span class="euro_price">1.022,07 €</span></tm-price>
           </span>
         </div>
         <div class="action-buttons">
@@ -60,7 +60,7 @@ def test_extract_products():
     assert row["brand"] == "GORENJE"
     assert row["name"] == "RK416EPS4"
     assert row["price_bgn"] == 66303
-    assert row["price_eur"] == 339
+    assert row["price_eur"] == 1022.07
     assert row["old_price_bgn"] is None
     assert row["old_price_eur"] is None
     assert row["in_stock"] is True

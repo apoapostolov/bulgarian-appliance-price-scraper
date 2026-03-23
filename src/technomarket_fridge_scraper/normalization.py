@@ -110,6 +110,39 @@ def parse_price_to_int(text: str | None) -> int | None:
     return int(digits) if digits else None
 
 
+def parse_price_to_number(text: str | None) -> int | float | None:
+    if not text:
+        return None
+    cleaned = text.replace("\xa0", " ").strip()
+    digits = re.sub(r"[^0-9,.\s]", "", cleaned).replace(" ", "")
+    if not digits:
+        return None
+
+    if "," in digits and "." in digits:
+        if digits.rfind(",") > digits.rfind("."):
+            digits = digits.replace(".", "").replace(",", ".")
+        else:
+            digits = digits.replace(",", "")
+    elif "," in digits:
+        parts = digits.split(",")
+        if len(parts[-1]) in {1, 2}:
+            digits = "".join(parts[:-1]) + "." + parts[-1]
+        else:
+            digits = "".join(parts)
+    elif "." in digits:
+        parts = digits.split(".")
+        if len(parts[-1]) in {1, 2}:
+            digits = "".join(parts[:-1]) + "." + parts[-1]
+        else:
+            digits = "".join(parts)
+
+    try:
+        value = float(digits)
+    except ValueError:
+        return None
+    return int(value) if value.is_integer() else value
+
+
 def parse_int(text: str | None) -> int | None:
     if isinstance(text, int):
         return text

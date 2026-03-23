@@ -176,5 +176,7 @@ Available tools:
 - Product details are fetched from each product page and cached per appliance
   type and store so the CSV/JSON includes richer metadata without duplicate
   page loads.
-- Price fields are stored as integers with punctuation stripped out of the
-  scraped price string.
+- BGN prices are stored as integer minor units with punctuation stripped out
+  of the scraped price string.
+- EUR prices preserve cents when present, so `1022.07` stays `1022.07` rather
+  than `102207`.

@@ -10,6 +10,7 @@ from .normalization import (
     canonicalize_spec_value,
     parse_energy_class,
     parse_price_to_int,
+    parse_price_to_number,
 )
 
 
@@ -21,11 +22,11 @@ def _first_text(node, selector: str) -> str | None:
     return text or None
 
 
-def _parse_price_pair(node) -> tuple[int | None, int | None]:
+def _parse_price_pair(node) -> tuple[int | None, int | float | None]:
     if node is None:
         return None, None
     bgn = parse_price_to_int(_first_text(node, ".bgn_price"))
-    eur = parse_price_to_int(_first_text(node, ".euro_price"))
+    eur = parse_price_to_number(_first_text(node, ".euro_price"))
     return bgn, eur
 
 
