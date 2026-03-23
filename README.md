@@ -154,6 +154,11 @@ Example client configuration:
 }
 ```
 
+The same configuration is also available in
+[`examples/mcp/mcp_servers.example.json`](examples/mcp/mcp_servers.example.json).
+See [`examples/mcp/README.md`](examples/mcp/README.md) for Claude Desktop and
+OpenClaw notes.
+
 Available tools:
 
 - `list_latest_exports` - list the latest JSON export for each store and
